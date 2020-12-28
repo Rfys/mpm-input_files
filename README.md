@@ -1,4 +1,4 @@
-# mpm-input_files
+# CB-Geo MPM Input Files
 
 Input files for [CB-Geo MPM](https://github.com/cb-geo/mpm) 'run analysis'
 
