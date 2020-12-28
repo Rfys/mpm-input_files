@@ -1,0 +1,89 @@
+{
+    "title": "MohrCoulomb CC",
+    "mesh": {
+      "mesh": "mesh.txt",
+      "entity_sets": "entity_sets.json",
+      "boundary_conditions": {
+          "velocity_constraints": [
+              {
+                  "nset_id" : 0,
+                  "dir": 1,
+                  "velocity": 0.00
+              },
+              {
+                  "nset_id" : 1,
+                  "dir": 0,
+                  "velocity": 0.00
+              }
+          ],
+          "friction_constraints": [
+              {
+                  "nset_id" : 0,
+                  "dir": 1,
+                  "sign_n": -1,
+                  "friction": 0.3
+              }
+          ]
+      },
+      "isoparametric": false,
+      "check_duplicates": false,
+      "cell_type": "ED2Q4",
+      "io_type": "Ascii2D",
+      "node_type": "N2D"
+    },
+    "particles": [
+      {
+        "generator": {
+          "check_duplicates": true,
+          "location": "particles.txt",
+          "io_type": "Ascii2D",
+          "particle_type": "P2D",
+          "material_id": 0,
+          "pset_id": 0,
+          "type": "file"
+        }
+      }
+    ],
+    "materials": [
+      {
+        "id" : 0,
+        "type": "MohrCoulomb2D",
+        "density": 1700.0,
+        "poisson_ratio": 0.2,
+        "youngs_modulus": 10000000,
+        "softening": false,
+        "friction": 33,
+        "dilation": 0,
+        "cohesion": 1,
+        "residual_friction": 28,
+        "residual_dilation": 0,
+        "residual_cohesion": 0,
+        "peak_pdstrain": 0,
+        "residual_pdstrain": 0.05,
+        "tension_cutoff": 1000
+      }
+    ],
+    "external_loading_conditions": {
+      "gravity": [0.0, -9.81]
+    },
+    "analysis": {
+      "type": "MPMExplicit2D",
+      "stress_update": "usf",
+      "locate_particles": false,
+      "dt": 0.00001,
+      "uuid": "Tension Cutoff 1KPa V_Update Off",
+      "nsteps": 100000,
+      "nload_balance_steps": 5,
+      "resume": {
+        "resume": false,
+        "uuid": "R25",
+        "step": 5
+      },
+      "pressure_smoothing" : false
+    },
+    "post_processing": {
+      "output_steps": 1000,
+      "path": "results/",
+      "vtk" : ["stresses","velocities","strains"]
+    }
+  }
