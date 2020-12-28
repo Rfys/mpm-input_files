@@ -9,6 +9,6 @@ files included:
 4. particles.txt
 
 ## Models
-* [Granular Column Collapse](https://github.com/Rfys/mpm-input_files/column_collapse)
+* [Granular Column Collapse](https://github.com/Rfys/mpm-input_files/tree/main/column_collapse)
 
 
